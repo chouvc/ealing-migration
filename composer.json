@@ -1,0 +1,23 @@
+{
+  "name": "chouvc/ealing-migration",
+  "description": "addons package for ealing",
+  "authors": [
+    {
+        "name": "chouvc",
+        "email": "onep2p@163.com"
+    }
+  ],
+  "license": "Apache-2.0",
+  "autoload": {
+    "psr-4": {
+      "Phinx\\": "phinx/src/Phinx",
+      "think\\migration\\": "src"
+    },
+    "files": [
+      "src/config.php"
+    ]
+  },
+  "require-dev": {
+    "topthink/framework": "^5.0"
+  }
+}
