@@ -1,6 +1,7 @@
 {
   "name": "chouvc/ealing-migration",
   "description": "addons package for ealing",
+  "type": "library",
   "authors": [
     {
         "name": "chouvc",
