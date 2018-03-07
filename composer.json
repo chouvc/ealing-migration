@@ -1,13 +1,10 @@
 {
     "name": "chouvc/ealing-migration",
     "description": "The a for Ealing migration",
-    "authors": [
-        {
-            "name": "chouvc",
-            "email": "onep2p@163.com"
-        }
-    ],
     "type": "library",
+    "require-dev": {
+        "topthink/framework": "^5.0"
+    },
     "license": "Apache-2.0",
 	"autoload": {
 		"psr-4": {
@@ -18,7 +15,11 @@
 		  "src/config.php"
 		]
 	},
-    "require-dev": {
-        "topthink/framework": "^5.0"
-    }
+    "authors": [
+        {
+            "name": "chouvc",
+            "email": "onep2p@163.com"
+        }
+    ],
+    "minimum-stability": "dev"
 }
