@@ -13,6 +13,7 @@ use Phinx\Util\Util;
 use think\console\Input;
 use think\console\Output;
 use think\console\input\Argument as InputArgument;
+use think\console\input\Option as InputOption;
 use think\migration\command\Seed;
 
 class Create extends Seed
@@ -25,6 +26,7 @@ class Create extends Seed
         $this->setName('seed:create')
              ->setDescription('Create a new database seeder')
              ->addArgument('name', InputArgument::REQUIRED, 'What is the name of the seeder?')
+             ->addOption('--module', '-m', InputOption::VALUE_REQUIRED, 'The module to migrate to')
              ->setHelp(sprintf('%sCreates a new database seeder%s', PHP_EOL, PHP_EOL));
     }
 
@@ -39,6 +41,10 @@ class Create extends Seed
      */
     protected function execute(Input $input, Output $output)
     {
+        $module  = $input->getOption('module');
+        config('migration.path', null);
+        if (null !== $module) config('migration.path', ROOT_PATH . 'application' . DS . $module . DS . 'database');
+        
         $path = $this->getPath();
 
         if (!file_exists($path)) {

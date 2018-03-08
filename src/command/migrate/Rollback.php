@@ -27,6 +27,7 @@ class Rollback extends Migrate
              ->addOption('--target', '-t', InputOption::VALUE_REQUIRED, 'The version number to rollback to')
              ->addOption('--date', '-d', InputOption::VALUE_REQUIRED, 'The date to rollback to')
              ->addOption('--force', '-f', InputOption::VALUE_NONE, 'Force rollback to ignore breakpoints')
+             ->addOption('--module', '-m', InputOption::VALUE_REQUIRED, 'The module to migrate to')
              ->setHelp(<<<EOT
 The <info>migrate:rollback</info> command reverts the last migration, or optionally up to a specific version
 
@@ -51,6 +52,10 @@ EOT
         $version = $input->getOption('target');
         $date    = $input->getOption('date');
         $force   = !!$input->getOption('force');
+        $module  = $input->getOption('module');
+
+        config('migration.path', null);
+        if (null !== $module) config('migration.path', ROOT_PATH . 'application' . DS . $module . DS . 'database');
 
         // rollback the specified environment
         $start = microtime(true);

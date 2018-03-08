@@ -25,6 +25,7 @@ class Run extends Seed
         $this->setName('seed:run')
              ->setDescription('Run database seeders')
              ->addOption('--seed', '-s', InputOption::VALUE_REQUIRED, 'What is the name of the seeder?')
+             ->addOption('--module', '-m', InputOption::VALUE_REQUIRED, 'The module to migrate to')
              ->setHelp(<<<EOT
                 The <info>seed:run</info> command runs all available or individual seeders
 
@@ -46,6 +47,10 @@ EOT
     protected function execute(Input $input, Output $output)
     {
         $seed = $input->getOption('seed');
+        $module  = $input->getOption('module');
+
+        config('migration.path', null);
+        if (null !== $module) config('migration.path', ROOT_PATH . 'application' . DS . $module . DS . 'database');
 
         // run the seed(ers)
         $start = microtime(true);
